@@ -18,7 +18,11 @@ inputs:
     default: './Dockerfile'
   publish:
     description: 'Whether to publish the image to dockerhub or not.'
+    required: false
     default: 'false'
+  dockerhub-password:
+    description: 'API key for dockerhub.'
+    required: false
 runs:
   using: 'composite'
   steps:
@@ -44,5 +48,6 @@ runs:
         --tag ${tag_name}
 
       if ${{ inputs.publish }}; then
+        docker login --username rvdockerhub --password ${{ inputs.dockerhub-password }}
         docker push runtimeverificationinc/${tag_name}
       fi

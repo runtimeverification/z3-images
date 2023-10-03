@@ -25,6 +25,7 @@ jobs:
           os: ubuntu
           distro: jammy
           publish: true
+          dockerhub-password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
   make-release:
     name: 'Update dependents'
