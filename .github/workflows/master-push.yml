@@ -1,0 +1,27 @@
+name: 'Test PR'
+on:
+  push:
+    branches:
+      - 'master'
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+
+  build-and-push-z3-image:
+    name: 'Build and Push Z3 Image'
+    runs-on: [self-hosted, linux, normal]
+    timeout-minutes: 15
+    steps:
+      - name: 'Check out code'
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: 'Set up Docker'
+        uses: ./.github/actions/with-docker
+        with:
+          os: ubuntu
+          distro: jammy
+          publish: false
