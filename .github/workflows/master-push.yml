@@ -12,7 +12,6 @@ jobs:
   build-and-push-z3-image:
     name: 'Build and Push Z3 Image'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - name: 'Check out code'
         uses: actions/checkout@v3
