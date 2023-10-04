@@ -42,9 +42,11 @@ runs:
       USER_ID=1000
       GROUP_ID=${USER_ID}
 
-      docker build .                         \
-        --file ${{ inputs.dockerfile }}      \
-        --build-arg Z3_VERSION=${z3_version} \
+      docker build .                           \
+        --file ${{ inputs.dockerfile }}        \
+        --build-arg BASE_OS=${BASE_OS}         \
+        --build-arg BASE_DISTRO=${BASE_DISTRO} \
+        --build-arg Z3_VERSION=${z3_version}   \
         --tag ${tag_name}
 
       if ${{ inputs.publish }}; then
