@@ -23,7 +23,6 @@ jobs:
         with:
           os: ubuntu
           distro: jammy
-          publish: true
           image-tag: ubuntu-jammy-z3
       - name: 'Push to dockerhub'
         run: |
