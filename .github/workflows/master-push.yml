@@ -18,13 +18,21 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: 'Set up Docker'
+      - name: 'Build docker image'
         uses: ./.github/actions/with-docker
         with:
           os: ubuntu
           distro: jammy
-          publish: true
-          dockerhub-password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          image-tag: runtimeverificationinc/ubuntu-jammy-z3
+      - name: 'Login to dockerhub'
+        uses: docker/login-action@v2
+        with:
+          username: rvdockerhub
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: 'Push to dockerhub'
+        run: |
+          version=$(cat version)
+          docker image push runtimeverificationinc/ubuntu-jammy-z3:${version}
 
   make-release:
     name: 'Update dependents'

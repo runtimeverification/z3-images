@@ -18,9 +18,9 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: 'Set up Docker'
+      - name: 'Build docker image'
         uses: ./.github/actions/with-docker
         with:
           os: ubuntu
           distro: jammy
-          publish: false
+          image-tag: ubuntu-jammy-z3
