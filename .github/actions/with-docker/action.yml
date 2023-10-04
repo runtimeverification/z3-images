@@ -48,6 +48,6 @@ runs:
         --tag ${tag_name}
 
       if ${{ inputs.publish }}; then
-        docker login --username rvdockerhub --password ${{ inputs.dockerhub-password }}
+        echo ${{ inputs.dockerhub-password }} | docker login --username rvdockerhub --password-stdin
         docker push runtimeverificationinc/${tag_name}
       fi
