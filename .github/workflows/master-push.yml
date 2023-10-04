@@ -18,7 +18,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: 'Set up Docker'
+      - name: 'Build docker image and push to dockerhub'
         uses: ./.github/actions/with-docker
         with:
           os: ubuntu
