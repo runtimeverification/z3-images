@@ -23,4 +23,3 @@ jobs:
         with:
           os: ubuntu
           distro: jammy
-          publish: true

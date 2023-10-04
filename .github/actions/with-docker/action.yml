@@ -1,6 +1,9 @@
 name: 'With Docker'
 description: 'Run a given stage with Docker Image'
 inputs:
+  image-tag:
+    description: 'Docker image tag to use'
+    required: true
   os: 
     description: 'OS to setup Docker for.'
     required: false
@@ -35,7 +38,7 @@ runs:
       BASE_DISTRO=${{ inputs.distro }}
 
       z3_version=$(cat version)
-      tag_name=${{ inputs.os }}-${{ inputs.distro }}-z3:${z3_version}
+      tag_name=${{ inputs.image-tag }}:${z3_version}
 
       USER=github-user
       GROUP=${USER}
@@ -48,8 +51,3 @@ runs:
         --build-arg BASE_DISTRO=${BASE_DISTRO} \
         --build-arg Z3_VERSION=${z3_version}   \
         --tag ${tag_name}
-
-      if ${{ inputs.publish }}; then
-        echo ${{ inputs.dockerhub-password }} | docker login --username rvdockerhub --password-stdin
-        docker push runtimeverificationinc/${tag_name}
-      fi
