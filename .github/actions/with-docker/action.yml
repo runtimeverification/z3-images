@@ -4,6 +4,7 @@ inputs:
   image-tag:
     description: 'Docker image tag to use'
     required: true
+    type: string
   os: 
     description: 'OS to setup Docker for.'
     required: false
