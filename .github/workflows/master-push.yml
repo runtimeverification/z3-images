@@ -24,10 +24,14 @@ jobs:
           os: ubuntu
           distro: jammy
           image-tag: runtimeverificationinc/ubuntu-jammy-z3
+      - name: 'Login to dockerhub'
+        uses: docker/login-action@v2
+        with:
+          username: rvdockerhub
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: 'Push to dockerhub'
         run: |
           version=$(cat version)
-          echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login --username rvdockerhub --password-stdin
           docker image push runtimeverificationinc/ubuntu-jammy-z3:${version}
 
   make-release:
