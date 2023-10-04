@@ -23,7 +23,7 @@ jobs:
         with:
           os: ubuntu
           distro: jammy
-          image-tag: ubuntu-jammy-z3
+          image-tag: runtimeverificationinc/ubuntu-jammy-z3
       - name: 'Push to dockerhub'
         run: |
           version=$(cat version)
