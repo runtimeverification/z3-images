@@ -23,9 +23,3 @@ jobs:
         with:
           os: ubuntu
           distro: jammy
-          image-tag: runtimeverificationinc/ubuntu-jammy-z3
-      - name: 'Push to dockerhub'
-        run: |
-          version=$(cat version)
-          echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login --username rvdockerhub --password-stdin
-          docker image push runtimeverificationinc/ubuntu-jammy-z3:${version}
