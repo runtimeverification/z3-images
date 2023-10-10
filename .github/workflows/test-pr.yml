@@ -18,9 +18,21 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: 'Build docker image'
+      - name: 'Build Jammy docker image'
         uses: ./.github/actions/with-docker
         with:
           os: ubuntu
           distro: jammy
-          image-tag: ubuntu-jammy-z3
+          image-tag: runtimeverificationinc/ubuntu-jammy-z3
+      - name: 'Build Focal docker image'
+        uses: ./.github/actions/with-docker
+        with:
+          os: ubuntu
+          distro: focal
+          image-tag: runtimeverificationinc/ubuntu-focal-z3
+      - name: 'Build Debian Bookworm docker image'
+        uses: ./.github/actions/with-docker
+        with:
+          os: debian
+          distro: bookworm
+          image-tag: runtimeverificationinc/debian-bookworm-z3
