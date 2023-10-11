@@ -23,16 +23,16 @@ jobs:
         with:
           os: ubuntu
           distro: jammy
-          image-tag: runtimeverificationinc/ubuntu-jammy-z3
+          image-tag: runtimeverificationinc/z3
       - name: 'Build Focal docker image'
         uses: ./.github/actions/with-docker
         with:
           os: ubuntu
           distro: focal
-          image-tag: runtimeverificationinc/ubuntu-focal-z3
+          image-tag: runtimeverificationinc/z3
       - name: 'Build Debian Bookworm docker image'
         uses: ./.github/actions/with-docker
         with:
           os: debian
           distro: bookworm
-          image-tag: runtimeverificationinc/debian-bookworm-z3
+          image-tag: runtimeverificationinc/z3
