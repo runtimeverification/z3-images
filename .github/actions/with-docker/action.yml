@@ -39,7 +39,7 @@ runs:
       BASE_DISTRO=${{ inputs.distro }}
 
       z3_version=$(cat version)
-      tag_name=${{ inputs.image-tag }}:${z3_version}
+      tag_name=${{ inputs.image-tag }}:${BASE_OS}-${BASE_DISTRO}-${z3_version}
 
       USER=github-user
       GROUP=${USER}
