@@ -1,4 +1,4 @@
-name: 'Test PR'
+name: 'Master Push'
 on:
   push:
     branches:
@@ -18,6 +18,12 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - name: 'Build Noble docker image'
+        uses: ./.github/actions/with-docker
+        with:
+          os: ubuntu
+          distro: noble
+          image-tag: runtimeverificationinc/z3
       - name: 'Build Jammy docker image'
         uses: ./.github/actions/with-docker
         with:
@@ -44,6 +50,7 @@ jobs:
       - name: 'Push to dockerhub'
         run: |
           version=$(cat version)
+          docker image push runtimeverificationinc/z3:ubuntu-noble-${version}
           docker image push runtimeverificationinc/z3:ubuntu-jammy-${version}
           docker image push runtimeverificationinc/z3:ubuntu-focal-${version}
           docker image push runtimeverificationinc/z3:debian-bookworm-${version}
